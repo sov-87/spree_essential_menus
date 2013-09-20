@@ -1,0 +1,32 @@
+<% if menu_bar.present? %>
+  <div class="menu_container">
+    <ul class="image_menu <%= menu_bar.css_class %>">
+      <% menu_bar.menus.visible.where(:parent_id => nil).each do |parent| %>
+        <li class="first-level" id="element<%= parent.id %>">
+          <a href="<%= parent.url %>">
+            <%= image_tag(parent.menu_image.url(:logo_color), :class => "color") %>
+            <%= image_tag(parent.menu_image.url(:logo_grey), :class => "grey") %>
+          </a>
+          <% if parent.children.count > 0 %>
+            <ul>
+              <% parent.children.each do |child| %>
+                <li class="second-level" data-image-color="<%= child.menu_image.url(:original) %>" data-image-grey="<%= child.menu_image.url(:greyscale) %>">
+                  <a href="<%= child.url %>">
+                    <%= image_tag(child.menu_image.url(:original), :class => "color") %>
+                    <%= image_tag(child.menu_image.url(:greyscale), :class => "grey") %>
+                    <div class="label">
+                      <%= child.link_text.upcase %>
+                    </div>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+      <div class="subimage_menu_container">
+        <ul class="subimage_menu"></ul>
+      </div>
+    </ul>
+  </div>
+<% end %>

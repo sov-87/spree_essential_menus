@@ -1,0 +1,46 @@
+<div class="toolbar">
+  <ul class="actions">
+    <li>
+      <p>
+        <%= button_link_to t('spree.admin.menu_bars.new_menu_bar'), new_object_url, :icon => 'add' %>
+      </p>
+    </li>
+  </ul>
+  <br class="clear"/>
+</div>
+<h1>
+  <%= t('spree.admin.menu_bars.list_of_menu_bars') %>
+</h1>
+<table class="index">
+  <thead>
+    <tr>
+      <th>
+        <%= t('spree.admin.menu_bars.name') %>
+      </th>
+      <th>
+        <%= t('spree.admin.menu_bars.css_class') %>
+      </th>
+      <th>
+        <%= t('action') %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menu_bars.each do |bar| %>
+      <tr>
+        <td>
+          <%= bar.name %>
+        </td>
+        <td>
+          <%= bar.css_class %>
+        </td>
+        <td>
+          <%= link_to_with_icon :pages, t('spree.admin.menus.list_of_menus'), admin_menu_bar_menus_path(bar) %>
+          <%= link_to_edit bar %>
+          <%= link_to_delete bar %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- <%= render :partial => 'spree/admin/shared/spree_menus_sidebar' %> -->

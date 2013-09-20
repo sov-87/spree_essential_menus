@@ -1,0 +1,45 @@
+<% if @menu.sequence.blank? %>
+  <%= form.hidden_field :sequence, :class => "sequence", :value => @sequence %>
+<% end %>
+<%= form.field_container :link_text do %>
+  <%= form.label :link_text, t('spree.admin.menus.link_text') %>
+  <span class="required"></span>
+  <br/>
+  <%= form.text_field :link_text, :class => "link_text" %>
+  <%= error_message_on :menu, :link_text %>
+<% end %>
+<%= form.field_container :url do %>
+  <%= form.label :url, t('spree.admin.menus.url') %>
+  <span class="required"></span>
+  <br/>
+  <%= form.text_field :url, :class => "url" %>
+  <br/>
+  <em>
+    <%= t("spree.admin.menus.explain_url") %>
+  </em>
+  <%= error_message_on :menu, :url %>
+<% end %>
+<%= form.field_container :visible do %>
+  <%= form.check_box :visible, :class => "text" %>
+  <%= form.label :visible, t('spree.admin.menus.visible') %>
+  <em>
+    <%= t("spree.admin.menus.explain_visible") %>
+  </em>
+  <%= error_message_on :menu, :visible %>
+<% end %>
+<h3>Opcjonalnie</h3>
+<% if Spree::Menu.all.count > 0 #and false#turn off for futher improvement %>
+  <%= form.field_container :parent_id do %>
+    <%= form.label :parent_id, t('spree.admin.menus.parent_id') %>
+    <br/>
+    <%= collection_select(:menu,:parent_id,Spree::Menu.where(:menu_bar_id => @menu_bar.id, :parent_id => nil).all, :id, :link_text, :prompt => t("spree.admin.menus.select_parent")) %>
+    <em>
+      <%= t("spree.admin.menus.explain_parent_id") %>
+    </em>
+    <%= error_message_on :menu, :parent_id %>
+  <% end %>
+<% end %>
+<%= form.field_container :menu_image do %>
+  <%= form.label :menu_image, t('spree.admin.menus.menu_image') %>
+  <%= form.file_field :menu_image    %>
+<% end %>
