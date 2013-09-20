@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.description = "Add menu customization for Spree. It's designed to be used with the spree_essentials base."
   s.required_ruby_version = '>= 1.8.7'
 
-  s.author    = 'Grzegorz Brzezinka'
-  s.email     = 'grzegorz@brzezinka.eu'
-  s.homepage  = 'http://www.brzezinka.eu'
+  s.author    = 'Fetisov Alexey'
+  s.email     = 'afetisov87@gmail.com'
+  s.homepage  = 'https://github.com/sov-87/spree_essential_menus'
   s.has_rdoc = false
 
   s.files       = `git ls-files`.split("\n")
